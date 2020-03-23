@@ -1,20 +1,11 @@
 <template>
   <nav class="controls">
-    <ul>
-      <li>
-        <button @click="onPreviousClicked" :disabled="!this.currentCardIndex">
-          Previous
-        </button>
-      </li>
-      <li>
-        <button
-          @click="onNextClicked"
-          :disabled="this.currentCardIndex === this.countOfCards - 1"
-        >
-          Next
-        </button>
-      </li>
-    </ul>
+    <button @click="onPreviousClicked" :disabled="previousDisabled">
+      Previous
+    </button>
+    <button @click="onNextClicked" :disabled="nextDisabled">
+      Next
+    </button>
   </nav>
 </template>
 
@@ -22,15 +13,15 @@
 export default {
   name: "controls",
   props: {
-    currentCardIndex: Number,
-    countOfCards: Number
+    previousDisabled: Boolean,
+    nextDisabled: Boolean
   },
   methods: {
-    onPreviousClicked(event) {
-      this.$emit("previousClicked", event.target);
+    onPreviousClicked() {
+      this.$emit("previousClicked");
     },
-    onNextClicked(event) {
-      this.$emit("nextClicked", event.target);
+    onNextClicked() {
+      this.$emit("nextClicked");
     }
   }
 };
@@ -44,40 +35,34 @@ export default {
   justify-content: center;
   align-items: center;
 
-  ul {
-    display: flex;
-    align-items: baseline;
-    list-style-type: none;
+  button {
+    min-width: 5rem;
+    border: 0;
+    border-radius: 0.25rem;
+    background-color: $blue-1;
+    color: $white;
+    font-size: 1rem;
+    line-height: 1.2;
+    white-space: nowrap;
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem 0.5rem;
+    cursor: pointer;
+    border: 2px solid transparent;
 
-    li button {
-      min-width: 5rem;
-      border: 0;
-      border-radius: 0.25rem;
-      background-color: $blue-1;
-      color: $white;
-      font-size: 1rem;
-      line-height: 1.2;
-      white-space: nowrap;
-      text-decoration: none;
-      padding: 0.25rem 0.5rem;
-      margin: 0.25rem 0.5rem;
+    &:focus,
+    &:hover {
+      border: 2px solid $blue-2;
       cursor: pointer;
-      border: 2px solid transparent;
+    }
 
-      &:focus,
+    &:disabled {
+      background-color: $gray-1;
+      color: $gray-2;
+      text-decoration: line-through;
+      cursor: not-allowed;
       &:hover {
-        border: 2px solid $blue-2;
-        cursor: pointer;
-      }
-
-      &:disabled {
-        background-color: $gray-1;
-        color: $gray-2;
-        text-decoration: line-through;
-        cursor: not-allowed;
-        &:hover {
-          border: 2px solid transparent;
-        }
+        border: 2px solid transparent;
       }
     }
   }

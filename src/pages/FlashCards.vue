@@ -22,10 +22,10 @@
         </template>
       </Card>
       <controls
+        :previousDisabled="previousDisabled"
+        :nextDisabled="nextDisabled"
         @previousClicked="previous"
         @nextClicked="next"
-        :countOfCards="countOfCards"
-        :currentCardIndex="currentCardIndex"
       />
     </main>
   </div>
@@ -72,6 +72,12 @@ export default {
     },
     countOfCards() {
       return this.questions.length;
+    },
+    previousDisabled() {
+      return !this.currentCardIndex;
+    },
+    nextDisabled() {
+      return this.currentCardIndex === this.countOfCards - 1;
     }
   },
   mounted() {
