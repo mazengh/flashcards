@@ -1,6 +1,5 @@
 <template functional>
   <header>
-    <!-- <div> -->
     <font-awesome-icon
       :icon="['fa', 'bolt']"
       size="2x"
@@ -9,7 +8,6 @@
       class="logo"
     />
     <h1>{{ props.title }}</h1>
-    <!-- </div> -->
   </header>
 </template>
 
