@@ -9,6 +9,7 @@
 import axios from "axios";
 import Spinner from "@/components/Spinner";
 import FlashCards from "@/pages/FlashCards";
+import americanFlag from "@/data/americanFlag.json";
 
 export default {
   name: "app",
@@ -18,7 +19,6 @@ export default {
       deck: null
     };
   },
-  methods: {},
   created() {
     // get the deck for questions about the American Flag
     const url = `https://flashcards-99bce.firebaseio.com/decks.json?orderBy="name"&equalTo="americanFlag"`;
@@ -29,7 +29,17 @@ export default {
       })
       .catch(err => {
         alert(err);
+      })
+      .finally(() => {
+        if (!this.deck) {
+          this.loadDefaultLocalDeck();
+        }
       });
+  },
+  methods: {
+    loadDefaultLocalDeck() {
+      this.deck = americanFlag;
+    }
   }
 };
 </script>
