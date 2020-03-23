@@ -34,7 +34,6 @@ export default {
 .cardContainer {
   position: relative;
   box-sizing: border-box;
-  padding: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -51,6 +50,7 @@ export default {
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
+    transform-origin: center right;
     transition: all 0.8s ease;
 
     div.front,
@@ -87,7 +87,7 @@ export default {
   }
 
   .flip {
-    transform: rotateY(180deg);
+    transform: translateX(-100%) rotateY(-180deg);
   }
 }
 </style>
