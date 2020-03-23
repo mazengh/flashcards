@@ -1,17 +1,11 @@
 <template>
   <div class="cardContainer" @click="onClickCard">
-    <div ref="currentCard" class="card" v-bind:class="{ 'flip': !isQuestion }">
+    <div class="card" :class="{ flip: flipped }">
       <div class="front">
-        <h3>Question?</h3>
-        <div>
-          <p>{{question}}</p>
-        </div>
+        <slot name="front"></slot>
       </div>
       <div class="back">
-        <h3>Answer!</h3>
-        <div>
-          <p>{{answer}}</p>
-        </div>
+        <slot v-if="flipped" name="back"></slot>
       </div>
     </div>
   </div>
@@ -21,13 +15,14 @@
 export default {
   name: "Card",
   props: {
-    isQuestion: Boolean,
-    question: String,
-    answer: String
+    flipped: {
+      type: Boolean,
+      default: false
+    }
   },
   methods: {
     onClickCard() {
-      this.$emit("clicked");
+      this.$emit("flipped");
     }
   }
 };
@@ -36,13 +31,9 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/_variables.scss";
 
-div.cardContainer {
+.cardContainer {
   position: relative;
-  height: 20rem;
-  width: 90%;
-  max-width: 33rem;
   box-sizing: border-box;
-  margin-top: 10px;
   padding: 15px;
   display: flex;
   flex-direction: column;

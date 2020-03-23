@@ -1,29 +1,26 @@
 <template>
-  <footer>
-    <nav class="controls">
-      <ul>
-        <li>
-          <button
-            tabindex="5"
-            @click="onPreviousClicked"
-            :disabled="!this.currentCardIndex"
-          >Previous</button>
-        </li>
-        <li>
-          <button
-            tabindex="6"
-            @click="onNextClicked"
-            :disabled="this.currentCardIndex === this.totalCards - 1"
-          >Next</button>
-        </li>
-      </ul>
-    </nav>
-  </footer>
+  <nav class="controls">
+    <ul>
+      <li>
+        <button @click="onPreviousClicked" :disabled="!this.currentCardIndex">
+          Previous
+        </button>
+      </li>
+      <li>
+        <button
+          @click="onNextClicked"
+          :disabled="this.currentCardIndex === this.totalCards - 1"
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>
 export default {
-  name: "Footer",
+  name: "controls",
   props: {
     currentCardIndex: Number,
     totalCards: Number
@@ -42,18 +39,18 @@ export default {
 <style lang="scss" scoped>
 @import "../scss/_variables.scss";
 
-footer {
-  height: 15vh;
+.controls {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  nav.controls ul {
+  ul {
     display: flex;
     align-items: baseline;
     list-style-type: none;
 
     li button {
+      min-width: 5rem;
       border: 0;
       border-radius: 0.25rem;
       background-color: $blue-1;
@@ -68,7 +65,6 @@ footer {
       border: 2px solid transparent;
 
       &:focus,
-      // &:hover:not(:disabled) {
       &:hover {
         border: 2px solid $blue-2;
         cursor: pointer;
