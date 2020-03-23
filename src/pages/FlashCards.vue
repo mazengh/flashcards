@@ -24,7 +24,7 @@
       <controls
         @previousClicked="previous"
         @nextClicked="next"
-        :totalCards="totalCards"
+        :countOfCards="countOfCards"
         :currentCardIndex="currentCardIndex"
       />
     </main>

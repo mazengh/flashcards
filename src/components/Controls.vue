@@ -9,7 +9,7 @@
       <li>
         <button
           @click="onNextClicked"
-          :disabled="this.currentCardIndex === this.totalCards - 1"
+          :disabled="this.currentCardIndex === this.countOfCards - 1"
         >
           Next
         </button>
@@ -23,7 +23,7 @@ export default {
   name: "controls",
   props: {
     currentCardIndex: Number,
-    totalCards: Number
+    countOfCards: Number
   },
   methods: {
     onPreviousClicked(event) {
